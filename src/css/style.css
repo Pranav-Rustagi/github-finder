@@ -1,0 +1,38 @@
+body {
+    background-color: #e5e5e5;
+}
+
+.logoBlock {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.logo-title {
+    font-weight: 600;
+}
+
+.border-2 {
+    border-width: 2px;
+}
+
+.text-small {
+    font-size: 0.8rem;
+}
+
+@media (min-width: 576px) {
+    .not-found {
+        max-width: 50%!important;
+    }
+}
+
+@media (min-width: 768px) {
+    .not-found {
+        max-width: 30%!important;
+    }   
+}
