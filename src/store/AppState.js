@@ -10,7 +10,7 @@ const AppState = (props) => {
         user_details: null,
         user_repos: null,
         loading: true,
-        error: true,
+        error: false,
     };
 
     let githubClientId, githubClientSecret;
