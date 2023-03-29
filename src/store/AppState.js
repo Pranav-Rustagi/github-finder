@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import AppReducer from "../reducer/AppReducer";
 import AppContext from "../context/AppContext"
-import { CLEAR_SEARCH, GET_USERS, GET_USER_DETAILS, RESET_LOADING, SET_LOADING } from "../actions";
+import { CLEAR_SEARCH, GET_USERS, GET_USER_DETAILS, RESET_LOADING, SET_ERROR, SET_LOADING } from "../actions";
 import axios from "axios";
 
 const AppState = (props) => {
@@ -10,7 +10,7 @@ const AppState = (props) => {
         user_details: null,
         user_repos: null,
         loading: true,
-        show_alert: false
+        error: true,
     };
 
     let githubClientId, githubClientSecret;
@@ -48,6 +48,7 @@ const AppState = (props) => {
         } catch (err) {
             console.log("Error");
             console.error(err);
+            dispatch({ type: SET_ERROR });
             dispatch({ type: RESET_LOADING });
         }
     };
@@ -75,6 +76,7 @@ const AppState = (props) => {
         } catch (err) {
             console.log("Error");
             console.error(err);
+            dispatch({ type: SET_ERROR });
             dispatch({ type: RESET_LOADING });
         }
     }

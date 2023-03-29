@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Container, Spinner } from "reactstrap";
 import UserDetails from "../components/UserDetails";
 import AppContext from "../context/AppContext";
+import WentWrong from "../components/WentWrong";
 
 const About = () => {
     const context = useContext(AppContext);
@@ -10,6 +11,7 @@ const About = () => {
         context.getUserDetails("Pranav-Rustagi");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
     return (
         <Container className="py-5">
             <h3>About Github-Finder</h3>
@@ -19,11 +21,17 @@ const About = () => {
             <br />
             <h3>About developer</h3>
             {
-                context.loading || context.user_details === null ?
-                    <div className="my-5 text-center">
-                        <Spinner color="danger" />
-                    </div> :
-                    <UserDetails user={context.user_details} />
+                context.error ?
+                    (
+                        <WentWrong />
+                    ) :
+                    (
+                        context.loading || context.user_details === null ?
+                            <div className="my-5 text-center">
+                                <Spinner color="danger" />
+                            </div> :
+                            <UserDetails user={context.user_details} />
+                    )
             }
         </Container>
     );

@@ -3,6 +3,7 @@ import { Container } from "reactstrap";
 import SearchBox from "../components/SearchBox";
 import UserCards from "../components/UserCards";
 import AppContext from "../context/AppContext";
+import WentWrong from "../components/WentWrong";
 
 const Home = () => {
     const [search, setSearch] = useState("");
@@ -15,15 +16,25 @@ const Home = () => {
 
     useEffect(() => {
         context.getUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <Container className="py-5">
-            <SearchBox context={context} search={search} handleSearchUpdate={handleSearchUpdate} setShowClear={setShowClear} />
-            <br />
-            <UserCards context={context} setSearch={setSearch} showClear={showClear} setShowClear={setShowClear} />
-        </Container>
+            {
+                context.error ?
+                    (
+                        <WentWrong />
+                    ) :
+                    (
+                        <>
+                            <SearchBox context={context} search={search} handleSearchUpdate={handleSearchUpdate} setShowClear={setShowClear} />
+                            <br />
+                            <UserCards context={context} setSearch={setSearch} showClear={showClear} setShowClear={setShowClear} />
+                        </>
+                    )
+            }
+        </Container >
     );
 }
 

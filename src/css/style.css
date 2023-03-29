@@ -34,5 +34,9 @@ body {
 @media (min-width: 768px) {
     .not-found {
         max-width: 30%!important;
-    }   
+    }
+    
+    .not-found.went-wrong {
+        max-width: 20%!important;
+    }
 }
